@@ -31,7 +31,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)\ConsoleApp1\bin\Debug\netcoreapp2.1\linux-arm\publish\'
+    SourceFolder: '$(Build.SourcesDirectory)/ConsoleApp1/bin/Debug/netcoreapp2.1/linux-arm/publish/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
