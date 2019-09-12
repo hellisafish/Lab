@@ -28,13 +28,14 @@ steps:
     publishWebProjects: false
     projects: '**/ConsoleApp1.csproj'
     arguments: '-r linux-arm'
+    zipAfterPublish: false
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
-     **/*
+     **/linux-arm/publish/*
      !.git/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
