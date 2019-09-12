@@ -30,10 +30,13 @@ steps:
     arguments: '-r linux-arm'
 
 - task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    Contents: '$(Build.SourcesDirectory)/**/publish/*'
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+     **/*
+     !.git/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
 
 - task: GitHubRelease@1
   inputs:
