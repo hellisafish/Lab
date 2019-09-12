@@ -26,7 +26,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**ConsoleApp1.csproj'
+    projects: '**/ConsoleApp1.csproj'
     arguments: '-r linux-arm'
 
 - task: CopyFiles@2
