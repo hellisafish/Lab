@@ -26,5 +26,22 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**/ConsoleApp1/ConsoleApp1.csproj'
+    projects: '**ConsoleApp1.csproj'
     arguments: '-r linux-arm'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)\ConsoleApp1\bin\Debug\netcoreapp2.1\linux-arm\publish\'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'Git Hub'
+    repositoryName: 'hellisafish/Lab'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
