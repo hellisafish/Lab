@@ -25,5 +25,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
-    projects: '**/*.sln'
+    publishWebProjects: false
+    projects: '**/ConsoleApp1/ConsoleApp1.csproj'
     arguments: '-r linux-arm'
