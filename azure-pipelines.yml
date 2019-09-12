@@ -31,7 +31,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '$(Build.SourcesDirectory)\**\publish\*.*'
+    Contents: '$(Build.SourcesDirectory)/**/publish/*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
 
