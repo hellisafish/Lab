@@ -83,5 +83,5 @@ steps:
       git merge --squash release/$(Build.BuildId)
       git commit -m "BuildId $(Build.BuildId)"
       git push origin HEAD:master
-      git push origina --delete release/$(Build.BuildId)
+      git push origin --delete release/$(Build.BuildId)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
