@@ -71,17 +71,23 @@ steps:
     overWrite: true
 
 - task: CmdLine@2
-  displayName: Push Deploy Repository
+  displayName: Push Deploy Feature
   inputs:
     script: |
       cd Deploy
-      dir
       git add .
       git commit -m "Latest Deploy $(Build.BuildId)" -a
       git push origin HEAD:release/$(Build.BuildId)
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+- task: CmdLine@2
+  displayName: Merge Feature to Master
+  inputs:
+    script: |
+      cd Deploy
       git checkout master
+      git pull
       git merge --squash release/$(Build.BuildId)
       git commit -m "BuildId $(Build.BuildId)"
       git push origin HEAD:master
-      git push origin --delete release/$(Build.BuildId)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
