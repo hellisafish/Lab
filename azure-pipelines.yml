@@ -15,6 +15,14 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+- task: CmdLine@2
+  displayName: Clean Artifacts Directory
+  inputs:
+    script: |
+      DEL /F/Q/S *.*
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: NuGetToolInstaller@1
 
 - task: DotNetCoreCLI@2
@@ -37,7 +45,7 @@ steps:
   inputs:
     script: |
       git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
-      git clean -xfd
+      git pull
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
