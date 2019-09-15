@@ -36,7 +36,7 @@ steps:
       git branch --set-upstream-to origin/master
       git pull
       cd 
-      if exist $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\ del $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
+      if exist $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\ del -f $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       mkdir $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       dir
       git add .
