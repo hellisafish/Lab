@@ -36,7 +36,8 @@ steps:
       git branch --set-upstream-to origin/master
       git pull
       dir
-      IF EXIST "linux-arm" DEL /F/Q/S "linux-arm"
+      if exist $(Build.ArtifactStagingDirectory)\linux-arm\ del $(Build.ArtifactStagingDirectory)\linux-arm\
+      dir
       git commit -m "Delete files"
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
