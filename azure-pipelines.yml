@@ -62,9 +62,10 @@ steps:
   displayName: Push Deploy Repository
   inputs:
     script: |
+      cd Deploy
       git config --global user.email "michael.payne@gilmond.com"
       git config --global user.name "Michael Payne"
       git add .
       git commit -m "Latest Deploy" -a
       git push
-    workingDirectory: '$(Build.ArtifactStagingDirectory)/Deploy'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
