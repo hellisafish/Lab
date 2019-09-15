@@ -36,8 +36,7 @@ steps:
       git branch --set-upstream-to origin/master
       git pull
       dir
-      cd linux-arm
-      DEL /F/Q/S *.*
+      DEL /F/Q/S linux-arm *.*
       git commit -m "Delete files"
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
