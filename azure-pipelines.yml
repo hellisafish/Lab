@@ -17,12 +17,14 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-- task: Build Project@2
+- task: DotNetCoreCLI@2
+  displayName: Build Project
   inputs:
     command: 'build'
     projects: '**/*.sln'
 
-- task: Publish Project@2
+- task: DotNetCoreCLI@2
+  displayName: Publish Project
   inputs:
     command: 'publish'
     publishWebProjects: false
@@ -30,13 +32,14 @@ steps:
     arguments: '-r linux-arm'
     zipAfterPublish: false
 
-- task: Clone Lab Deploy @2
+- task: CmdLine@2
+  displayName: Clone Deploy Repository
   inputs:
     script: 'git clone "https://NetCorePi@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
-- task: Copy Artifacts @2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/Deploy'
+- task: CopyFiles@2
+  displayName: 'Copy Artifacts to Deploy Repository'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
@@ -44,7 +47,8 @@ steps:
      !.git/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
 
-- task: Push Lab Deploy @2
+- task: CmdLine@2
+  displayName: Push Deploy Repository
   inputs:
     script: |
       git config --global user.email "michael.payne@gilmond.com"
