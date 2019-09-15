@@ -25,6 +25,19 @@ steps:
 
 - task: NuGetToolInstaller@1
 
+- task: CmdLine@2
+  displayName: Clone Deploy Repository
+  inputs:
+    script: |
+      git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
+      cd Deploy
+      git config user.email "michael.payne@gilmond.com"
+      git config user.name "Michael Payne"
+      git branch --set-upstream-to origin/master
+      git pull
+      dir
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+    
 - task: DotNetCoreCLI@2
   displayName: Build Project
   inputs:
@@ -39,19 +52,6 @@ steps:
     projects: '**/ConsoleApp1.csproj'
     arguments: '-r linux-arm'
     zipAfterPublish: false
-
-- task: CmdLine@2
-  displayName: Clone Deploy Repository
-  inputs:
-    script: |
-      git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
-      cd Deploy
-      git config user.email "michael.payne@gilmond.com"
-      git config user.name "Michael Payne"
-      git branch --set-upstream-to origin/master
-      git pull
-      dir
-    workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
   displayName: 'Copy Artifacts to Deploy Repository'
