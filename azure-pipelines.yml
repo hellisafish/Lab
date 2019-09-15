@@ -79,4 +79,9 @@ steps:
       git add .
       git commit -m "Latest Deploy $(Build.BuildId)" -a
       git push origin HEAD:release/$(Build.BuildId)
+      git checkout master
+      git merge --squash release/$(Build.BuildId)
+      git commit -m "BuildId $(Build.BuildId)"
+      git push origin HEAD:master
+      git push origina --delete release/$(Build.BuildId)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
