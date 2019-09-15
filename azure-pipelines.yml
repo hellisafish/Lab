@@ -35,12 +35,15 @@ steps:
       git config user.name "Michael Payne"
       git branch --set-upstream-to origin/master
       git pull
+      git branch "release/$(Build.BuildId)"
+      git checkout "release/$(Build.BuildId)"
       cd 
       if exist $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\ del /f /q $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       mkdir $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       dir
       git add .
-      git commit -m "Delete files"
+      git commit -m "Delete Deploy Files"
+      git push
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
 - task: DotNetCoreCLI@2
