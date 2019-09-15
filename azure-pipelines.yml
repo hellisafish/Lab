@@ -42,7 +42,7 @@ steps:
       mkdir $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       git add .
       git commit -m "Delete Deploy Files"
-      git push origin "release/$(Build.BuildId)""
+      git push origin HEAD:release/$(Build.BuildId)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
 - task: DotNetCoreCLI@2
