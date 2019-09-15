@@ -67,6 +67,7 @@ steps:
   inputs:
     script: |
       cd Deploy
+      dir
       git status
       git add .
       git status
