@@ -57,6 +57,7 @@ steps:
      *
      !.git/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
+    overWrite: true
 
 - task: CmdLine@2
   displayName: Push Deploy Repository
