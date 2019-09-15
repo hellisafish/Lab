@@ -78,5 +78,5 @@ steps:
       dir
       git add .
       git commit -m "Latest Deploy $(Build.BuildId)" -a
-      git push
+      git push origin HEAD:release/$(Build.BuildId)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
