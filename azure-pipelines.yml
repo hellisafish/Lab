@@ -50,6 +50,7 @@ steps:
       git config user.name "Michael Payne"
       git branch --set-upstream-to origin/master
       git pull
+      dir
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
