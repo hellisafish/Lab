@@ -69,7 +69,7 @@ steps:
     script: |
       cd Deploy
       dir
-      git status
+      git check-ignore -v
       git add .
       git status
       git commit -m "Latest Deploy $(Build.BuildId)" -a
