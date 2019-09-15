@@ -37,6 +37,7 @@ steps:
       git pull
       dir
       if exist $(Build.ArtifactStagingDirectory)\linux-arm\ del $(Build.ArtifactStagingDirectory)\linux-arm\
+      mkdir $(Build.ArtifactStagingDirectory)\linux-arm\
       dir
       git commit -m "Delete files"
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
