@@ -43,7 +43,7 @@ steps:
       dir
       git add .
       git commit -m "Delete Deploy Files"
-      git push
+      git push --set-upstream origin "release/$(Build.BuildId)""
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
 - task: DotNetCoreCLI@2
