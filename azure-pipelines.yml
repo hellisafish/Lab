@@ -35,8 +35,9 @@ steps:
       git config user.name "Michael Payne"
       git branch --set-upstream-to origin/master
       git pull
-      if exist $(Build.ArtifactStagingDirectory)\linux-arm\ del $(Build.ArtifactStagingDirectory)\linux-arm\
-      mkdir $(Build.ArtifactStagingDirectory)\linux-arm\
+      cd 
+      if exist $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\ del $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
+      mkdir $(Build.ArtifactStagingDirectory)\Deploy\linux-arm\
       dir
       git add .
       git commit -m "Delete files"
