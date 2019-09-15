@@ -57,13 +57,3 @@ steps:
       git commit -m "Latest Deploy" -a
       git push
     workingDirectory: '$(Build.ArtifactStagingDirectory)/Deploy'
-
-- task: GitHubRelease@1
-  inputs:
-    gitHubConnection: 'Git Hub'
-    repositoryName: 'hellisafish/Lab'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    changeLogCompareToRelease: 'lastFullRelease'
-    changeLogType: 'commitBased'
