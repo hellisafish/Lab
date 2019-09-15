@@ -30,14 +30,26 @@ steps:
     arguments: '-r linux-arm'
     zipAfterPublish: false
 
+- task: CmdLine@2
+  inputs:
+    script: 'git clone "https://NetCorePi@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/Deploy'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
      **/linux-arm/publish/*
      !.git/**/*
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      git add
+      git commit -m "Latest Deploy" -a
+      git push
 
 - task: GitHubRelease@1
   inputs:
