@@ -46,6 +46,7 @@ steps:
     script: |
       git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
       cd Deploy
+      git branch --set-upstream-to origin/master
       git pull
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
