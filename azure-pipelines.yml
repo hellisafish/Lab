@@ -46,6 +46,8 @@ steps:
     script: |
       git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
       cd Deploy
+      git config user.email "michael.payne@gilmond.com"
+      git config user.name "Michael Payne"
       git branch --set-upstream-to origin/master
       git pull
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
@@ -65,9 +67,11 @@ steps:
   inputs:
     script: |
       cd Deploy
-      git config --global user.email "michael.payne@gilmond.com"
-      git config --global user.name "Michael Payne"
+      git status
       git add .
+      git status
       git commit -m "Latest Deploy $(Build.BuildId)" -a
+      git status
       git push
+      git status
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
