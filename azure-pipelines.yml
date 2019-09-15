@@ -41,9 +41,9 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy Artifacts to Deploy Repository'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)/ConsoleApp1/bin/Debug/netcoreapp2.1/linux-arm/publish/'
     Contents: |
-     **/linux-arm/publish/*
+     *
      !.git/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
 
