@@ -35,7 +35,9 @@ steps:
 - task: CmdLine@2
   displayName: Clone Deploy Repository
   inputs:
-    script: 'git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"'
+    script: |
+      git clone "https://$(LabDeployGitUsername):$(LabDeployGitPassword)@dev.azure.com/NetCorePi/Lab/_git/LabDeploy" "Deploy"
+      git clean -xfd
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
