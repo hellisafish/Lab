@@ -36,6 +36,9 @@ steps:
       git branch --set-upstream-to origin/master
       git pull
       dir
+      cd linux-arm
+      DEL /F/Q/S *.*
+      git commit -m "Delete files"
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     
 - task: DotNetCoreCLI@2
@@ -60,7 +63,7 @@ steps:
     Contents: |
      *
      !.git/**/*
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/Deploy/linux-arm/'
     overWrite: true
 
 - task: CmdLine@2
@@ -69,11 +72,7 @@ steps:
     script: |
       cd Deploy
       dir
-      git check-ignore "ConsoleApp1.dll" -v
       git add .
-      git status
       git commit -m "Latest Deploy $(Build.BuildId)" -a
-      git status
       git push
-      git status
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
