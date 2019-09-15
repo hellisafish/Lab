@@ -69,7 +69,7 @@ steps:
     script: |
       cd Deploy
       dir
-      git check-ignore -v
+      git check-ignore "ConsoleApp1.dll" -v
       git add .
       git status
       git commit -m "Latest Deploy $(Build.BuildId)" -a
